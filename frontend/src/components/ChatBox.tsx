@@ -4,18 +4,18 @@ import { sendMessage, fetchHistory, Message } from '../services/api'
 
 const LoadingDots: React.FC = () => (
   <div className="flex justify-start mb-4">
-    <div className="glass-dark px-5 py-3 rounded-2xl rounded-bl-md">
+    <div className="px-5 py-3 glass-dark rounded-2xl rounded-bl-md">
       <div className="flex space-x-2">
         <div 
-          className="w-2 h-2 bg-white/60 rounded-full animate-bounce" 
+          className="w-2 h-2 rounded-full bg-white/60 animate-bounce" 
           style={{ animationDelay: '0ms' }} 
         />
         <div 
-          className="w-2 h-2 bg-white/60 rounded-full animate-bounce" 
+          className="w-2 h-2 rounded-full bg-white/60 animate-bounce" 
           style={{ animationDelay: '150ms' }} 
         />
         <div 
-          className="w-2 h-2 bg-white/60 rounded-full animate-bounce" 
+          className="w-2 h-2 rounded-full bg-white/60 animate-bounce" 
           style={{ animationDelay: '300ms' }} 
         />
       </div>
@@ -89,26 +89,26 @@ const ChatBox: React.FC = () => {
     <div className="w-full max-w-3xl h-[90vh] glass rounded-3xl shadow-glass flex flex-col overflow-hidden">
       {/* Header */}
       <div className="p-6 border-b border-white/10">
-        <h1 className="text-2xl font-bold text-white text-center">
+        <h1 className="text-2xl font-bold text-center text-white">
           ✨ AI Chat Assistant
         </h1>
-        <p className="text-white/60 text-center text-sm mt-1">
+        <p className="mt-1 text-sm text-center text-white/60">
           Powered by Google Gemini
         </p>
       </div>
 
       {/* Error Banner */}
       {error && (
-        <div className="mx-6 mt-4 p-3 bg-red-500/20 border border-red-500/30 rounded-lg">
-          <p className="text-red-300 text-sm text-center">{error}</p>
+        <div className="p-3 mx-6 mt-4 border rounded-lg bg-red-500/20 border-red-500/30">
+          <p className="text-sm text-center text-red-300">{error}</p>
         </div>
       )}
 
       {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 p-6 overflow-y-auto">
         {messages.length === 0 && !error && (
           <div className="flex items-center justify-center h-full">
-            <p className="text-white/40 text-center">
+            <p className="text-center text-white/40">
               Start a conversation with AI...
             </p>
           </div>
@@ -136,12 +136,12 @@ const ChatBox: React.FC = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Type your message..."
-            className="flex-1 bg-white/10 border border-white/20 rounded-2xl px-5 py-4 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all"
+            className="flex-1 px-5 py-4 text-white transition-all border bg-white/10 border-white/20 rounded-2xl placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
           />
           <button
             onClick={handleSend}
             disabled={isLoading || !input.trim()}
-            className="bg-gradient-to-r from-accent to-primary hover:from-accent-light hover:to-primary-light disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-2xl font-semibold transition-all shadow-lg hover:shadow-glow"
+            className="px-8 py-4 font-semibold text-white transition-all shadow-lg bg-gradient-to-r from-accent to-primary hover:from-accent-light hover:to-primary-light disabled:opacity-50 disabled:cursor-not-allowed rounded-2xl hover:shadow-glow"
           >
             Send
           </button>
@@ -152,3 +152,4 @@ const ChatBox: React.FC = () => {
 }
 
 export default ChatBox
+
