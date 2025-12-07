@@ -47,10 +47,25 @@ const ChatBox: React.FC = () => {
       setError(null)
       const history = await fetchHistory()
       setMessages(history)
-    } catch (err) {
-      setError("Unable to connect to server. Please try again later.")
-      console.error('Failed to fetch history:', err)
-    }
+    } catch (err: any) {
+  console.error("Chat API Error:", err)
+
+  if (err?.response) {
+    setError(`Server Error: ${err.response.status}`)
+  } else if (err?.request) {
+    setError("Backend is not responding. Please try again later.")
+  } else {
+    setError("Unexpected error occurred.")
+  }
+
+  const errorMessage: Message = {
+    role: 'ai',
+    content: 'Sorry, the server failed to process your request.',
+  }
+
+  setMessages(prev => [...prev, errorMessage])
+}
+
   }
 
   const handleSend = async () => {
