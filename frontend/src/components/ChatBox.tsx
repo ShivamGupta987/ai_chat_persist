@@ -48,7 +48,7 @@ const ChatBox: React.FC = () => {
       const history = await fetchHistory()
       setMessages(history)
     } catch (err) {
-      setError('Unable to connect to server. Make sure the backend is running on localhost:5000')
+      setError("Unable to connect to server. Please try again later.")
       console.error('Failed to fetch history:', err)
     }
   }
